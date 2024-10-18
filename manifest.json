@@ -1,9 +1,10 @@
 {
 	"name": "NerfedEngiTurrets",
-	"version_number": "1.0.0",
+	"version_number": "1.0.1",
 	"website_url": "https://github.com/SmoothSpatula/SmoothSpatula-NerfedEngiTurrets",
 	"description": "Engineer turrets don't receive any items anymore.",
 	"dependencies": [
-		"ReturnOfModding-ReturnOfModding-1.0.32"
+		"ReturnOfModding-ReturnOfModding-1.0.32",
+		"RoRRModdingToolkit-RoRR_Modding_Toolkit-1.1.18"
 	]
 }
