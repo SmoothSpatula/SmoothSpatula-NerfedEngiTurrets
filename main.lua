@@ -2,21 +2,12 @@
 -- SmoothSpatula
 
 log.info("Successfully loaded ".._ENV["!guid"]..".")
+mods["RoRRModdingToolkit-RoRR_Modding_Toolkit"].auto()
 
-local hooks = {}
-hooks["gml_Object_oStartMenu_Step_2"] = function() -- mod init
-    hooks["gml_Object_oStartMenu_Step_2"] = nil
-    local items = gm.variable_global_get("class_item")
-
-    for i=1, #items do -- for all items
-        if items[i] ~= nil and (items[i][15] >> 6)%2 ~= 1 then -- if item_blacklist_engi_turrets flag is off
-            items[i][15] = items[i][15] + (1 << 6) -- turn item_blacklist_engi_turrets on
-        end
+local post_initialize = function()
+    for i, _ in ipairs(Class.ITEM) do
+        local item = Item.wrap(i-1)
+        item.loot_tags = item.loot_tags | Item.LOOT_TAG.item_blacklist_engi_turrets
     end
 end
-
-gm.post_code_execute(function(self, other, code, result, flags) 
-    if hooks[code.name] then
-        hooks[code.name](self)
-    end
-end)
+Initialize(post_initialize, true)
